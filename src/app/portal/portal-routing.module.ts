@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { articlesFeatureKey, eventsFeatureKey } from './common/constants/common.constants';
 import { PortalNotFoundComponent } from './common/pages/not-found/not-found.component';
+import { organisationFeatureKey } from './features/organisation/constants/organisation.constants';
 
 const routes: Routes = [
   {
     path: eventsFeatureKey,
     loadChildren: () => import('./features/event/event.module')
       .then((imported) => imported.EventPortalModule),
+  },
+  {
+    path: organisationFeatureKey,
+    loadChildren: () => import('./features/organisation/organisation.module')
+      .then((imported) => imported.OrganisationPortalModule),
   },
   {
     path: articlesFeatureKey,

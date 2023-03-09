@@ -3925,16 +3925,20 @@ export type RoleTranslatableEntityInput = {
 export type ScheduleEntity = {
   __typename?: 'ScheduleEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
+  endDate?: Maybe<Scalars['Date']>;
   event?: Maybe<EventEntity>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  startDate?: Maybe<Scalars['Date']>;
 };
 
 export type ScheduleEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
+  endDate?: InputMaybe<Scalars['Date']>;
   event?: InputMaybe<EventEntityInput>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  startDate?: InputMaybe<Scalars['Date']>;
 };
 
 export type SocialMediaEntity = {
@@ -4391,6 +4395,15 @@ export type GetEventDetailsQueryVariables = Exact<{
 
 export type GetEventDetailsQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, color?: string | null, icon?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
 
+export type OrganisationFragment = { __typename?: 'OrganisationEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
+
+export type GetOrganisationDetailsQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetOrganisationDetailsQuery = { __typename?: 'Query', getOrganisation?: { __typename?: 'OrganisationEntity', id?: string | null, contact?: { __typename?: 'ContactEntity', id?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
+
 export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type GetEventsQueryVariables = Exact<{
@@ -4509,6 +4522,18 @@ export const ContactFragmentDoc = gql`
     `;
 export const EventFragmentDoc = gql`
     fragment Event on EventEntity {
+  id
+  address {
+    ...Address
+  }
+  contact {
+    ...Contact
+  }
+}
+    ${AddressFragmentDoc}
+${ContactFragmentDoc}`;
+export const OrganisationFragmentDoc = gql`
+    fragment Organisation on OrganisationEntity {
   id
   address {
     ...Address
@@ -4736,6 +4761,30 @@ export const GetEventDetailsDocument = gql`
   })
   export class GetEventDetailsGQL extends Apollo.Query<GetEventDetailsQuery, GetEventDetailsQueryVariables> {
     override document = GetEventDetailsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetOrganisationDetailsDocument = gql`
+    query getOrganisationDetails($id: String) {
+  getOrganisation(entity: {id: $id}) {
+    id
+    contact {
+      id
+    }
+    address {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrganisationDetailsGQL extends Apollo.Query<GetOrganisationDetailsQuery, GetOrganisationDetailsQueryVariables> {
+    override document = GetOrganisationDetailsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -1,0 +1,11 @@
+query getOrganisationDetails($id: String) {
+  getOrganisation(entity: { id: $id }) {
+    id
+    contact {
+      id
+    }
+    address {
+      id
+    }
+  }
+}

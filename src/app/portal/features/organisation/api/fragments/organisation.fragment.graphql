@@ -1,0 +1,9 @@
+fragment Organisation on OrganisationEntity {
+  id
+  address {
+    ...Address
+  }
+  contact {
+    ...Contact
+  }
+}

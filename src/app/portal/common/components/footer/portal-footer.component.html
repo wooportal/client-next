@@ -16,6 +16,7 @@
             : 'assets/app-store.svg'"></app-image>
       </a>
     </nav>
+
     <nav>
       <a *ngFor="let item of socialMedia | async"
         mat-icon-button 
@@ -26,6 +27,12 @@
           [icon]="['fab', icon(item.icon)]">
         </fa-icon>
       </a>
+      <button mat-icon-button>
+        <fa-icon
+          size="2x" 
+          [icon]="['fas', 'rss']">
+        </fa-icon>
+      </button>
     </nav>
   </aside>
 </footer>

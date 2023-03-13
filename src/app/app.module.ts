@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { APP_INITIALIZER, NgModule, Type } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,8 +44,12 @@ const libs: any[] = [
   }),
 ];
 
+const materials: Type<any>[] = [
+  MatMenuModule
+]
+
 const modules: Type<any>[] = [
-  CoreModule
+  CoreModule,
 ];
 
 const providers: any[] = [
@@ -69,6 +74,7 @@ const providers: any[] = [
   imports: [
     ...framework,
     ...libs,
+    ...materials,
     ...modules,
   ],
   providers: [

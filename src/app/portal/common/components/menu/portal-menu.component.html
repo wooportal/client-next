@@ -1,0 +1,144 @@
+<section>
+  <div class="menu">
+    <!-- Menupoint Discover -->
+    <button mat-button [matMenuTriggerFor]="menu">Entdecken</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'calendar']">
+      </fa-icon>
+        <span>Events</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'people-group']">
+      </fa-icon>
+        <span>Einrichtungen</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'tags']">
+      </fa-icon>
+        <span>Kleinanzeigen</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'map']">
+      </fa-icon>
+        <span>Karte</span>
+        <p>test</p>
+      </button>
+    </mat-menu>
+
+    <!-- Menupoint Experience -->
+    <button mat-button [matMenuTriggerFor]="menu">Erfahren</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'calendar']">
+      </fa-icon>
+        <span>Beiträge</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'people-group']">
+      </fa-icon>
+        <span>Publizierende</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'tags']">
+      </fa-icon>
+        <span>Mediathek</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'map']">
+      </fa-icon>
+        <span>Über uns</span>
+        <p>test</p>
+      </button>
+    </mat-menu>  
+    
+    <!-- Menupoint Participate -->
+    <button mat-button [matMenuTriggerFor]="menu">Mitmachen</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'calendar']">
+      </fa-icon>
+        <span>Umfragen</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'people-group']">
+      </fa-icon>
+        <span>Wettbewerbe</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'tags']">
+      </fa-icon>
+        <span>Eigene Beiträge</span>
+        <p>test</p>
+      </button>
+      <button mat-menu-item>
+        <fa-icon
+        [icon]="['fas', 'map']">
+      </fa-icon>
+        <span>Feedback</span>
+        <p>test</p>
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="search">
+    <!-- searchbar -->
+    <button mat-icon-button>
+      <fa-icon
+        size="2x" 
+        [icon]="['fas', 'magnifying-glass']">
+      </fa-icon>
+    </button>
+  </div>
+
+ 
+  <!-- Log in  -->
+  <div class="buttons">
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="primary">Primary</button>
+  </div>
+  
+  <div class="icons">
+    <!-- Translate -->
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <fa-icon
+          size="2x" 
+          [icon]="['fas', 'language']">
+        </fa-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+      <button mat-menu-item>Deutsch</button>
+      <button mat-menu-item>English</button>
+      <button mat-menu-item>Francais</button>
+    </mat-menu>
+    </div>
+
+    <!-- User-Avatar -->
+    <button mat-icon-button>
+      <fa-icon
+        size="2x" 
+        [icon]="['fas', 'user']">
+      </fa-icon>
+    </button>
+  </div>
+</section>

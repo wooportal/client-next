@@ -1,5 +1,7 @@
-import { PortalFooterComponent } from './components/footer/portal-footer.component';
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { PortalFooterComponent } from './components/footer/portal-footer.component';
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,6 +16,7 @@ import { commonFeatureKey } from './constants/common.constants';
 import { PortalNotFoundComponent } from './pages/not-found/not-found.component';
 import { CommonEffects } from './state/common.effects';
 import { commonReducer } from './state/common.reducer';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const components: Type<any>[] = [
   PortalFooterComponent,
@@ -32,6 +35,9 @@ const framework: Type<any>[] = [
 
 const materials: Type<any>[] = [
   FontAwesomeModule,
+  MatButtonModule,
+  MatMenuModule,
+  ScrollingModule,
   MatToolbarModule,
 ];
 

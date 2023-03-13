@@ -41,7 +41,7 @@ const components: Type<any>[] = [
 
 const directives: Type<any>[] = [
   HtmlDirective,
-  I18nDirective
+  I18nDirective,
 ];
 
 const pipes: Type<any>[] = [
@@ -59,8 +59,7 @@ const materials: Type<any>[] = [
   MatButtonModule,
   MatCardModule,
   MatSnackBarModule,
-  MatChipsModule
-
+  MatChipsModule,
 ];
 
 const libs: any = [

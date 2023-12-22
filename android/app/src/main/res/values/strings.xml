@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">wooportal</string>
+    <string name="title_activity_main">wooportal</string>
+    <string name="package_name">app.wooportal</string>
+    <string name="custom_url_scheme">app.wooportal</string>
+</resources>

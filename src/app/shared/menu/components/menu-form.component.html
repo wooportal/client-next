@@ -1,10 +1,10 @@
 <form [formGroup]="form">
   <div formArrayName="menuItems">
     @for (menuItem of menuItems.controls; track menuItem; let index = $index) {
-      <app-admin-settings-page-menu-form
+      <app-page-menu-item-form
         [formControlName]="index"
         (deleted)="onDelete(index)">
-      </app-admin-settings-page-menu-form>
+      </app-page-menu-item-form>
     }
   </div>
 </form>

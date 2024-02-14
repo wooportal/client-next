@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { menuFormStateKey } from '../constants/menu-form.constants';
-import { AdminSettingsPageMenuState } from './menu-form.reducer';
+import { MenuFormState } from './menu-form.reducer';
 
-export const selectMenuFormState = createFeatureSelector<AdminSettingsPageMenuState>(menuFormStateKey);
+export const selectMenuFormState = createFeatureSelector<MenuFormState>(menuFormStateKey);
 
 export const selectParentMenuItems = createSelector(
   selectMenuFormState,

@@ -21,7 +21,7 @@ import { MenuItemFormComponent } from './components/form/menu-item-form.componen
 import { MenuFormComponent } from './components/menu-form.component';
 import { menuFormStateKey } from './constants/menu-form.constants';
 import { MenuFormEffects } from './state/menu-form.effects';
-import { adminSettingsPageMenuReducer } from './state/menu-form.reducer';
+import { menuFormReducer } from './state/menu-form.reducer';
 
 const components = [
   MenuFormComponent,
@@ -51,7 +51,7 @@ const modules = [
 
 const libs = [
   EffectsModule.forFeature([MenuFormEffects]),
-  StoreModule.forFeature(menuFormStateKey, adminSettingsPageMenuReducer),
+  StoreModule.forFeature(menuFormStateKey, menuFormReducer),
   DragDropContainerComponent,
   DragDropElementComponent,
   GridColumnDirective,

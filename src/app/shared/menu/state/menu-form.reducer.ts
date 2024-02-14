@@ -2,16 +2,16 @@ import { createReducer, on } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { MenuFormActions } from './menu-form.actions';
 
-export interface AdminSettingsPageMenuState {
+export interface MenuFormState {
   parentMenuItems?: Maybe<MenuItemEntity[]>,
 }
 
-export const initialState: AdminSettingsPageMenuState = {};
+export const initialState: MenuFormState = {};
 
-export const adminSettingsPageMenuReducer = createReducer(
+export const menuFormReducer = createReducer(
   initialState,
 
-  on(MenuFormActions.parentMenuItemsRetrieved, (state, action): AdminSettingsPageMenuState => ({
+  on(MenuFormActions.parentMenuItemsRetrieved, (state, action): MenuFormState => ({
     ...state, parentMenuItems: action.parents
   })),
 

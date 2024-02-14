@@ -4,8 +4,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, map, takeUntil } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
-import { AdminSettingsPageMenuActions } from '../../state/admin-settings-page-menu.actions';
-import { selectParentMenuItems } from '../../state/admin-settings-page-menu.selectors';
+import { MenuFormActions } from '../../state/menu-form.actions';
+import { selectParentMenuItems } from '../../state/menu-form.selectors';
+
 
 type PageMenuFormInput = {
   menu?: Maybe<MenuItemEntity>,
@@ -13,11 +14,11 @@ type PageMenuFormInput = {
 };
 
 @Component({
-  selector: 'app-admin-settings-page-menu-dialog',
-  templateUrl: './admin-settings-page-menu-dialog.component.html',
-  styleUrls: ['./admin-settings-page-menu-dialog.component.scss'],
+  selector: 'app-menu-form-dialog',
+  templateUrl: './menu-form-dialog.component.html',
+  styleUrls: ['./menu-form-dialog.component.scss'],
 })
-export class AdminSettingsPageMenuDialogComponent implements OnDestroy {
+export class MenuFormDialogComponent implements OnDestroy {
 
   public parentMenuItems = this.store.select(selectParentMenuItems);
 
@@ -29,11 +30,11 @@ export class AdminSettingsPageMenuDialogComponent implements OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
-    private dialogRef: MatDialogRef<AdminSettingsPageMenuDialogComponent>,
+    private dialogRef: MatDialogRef<MenuFormDialogComponent>,
     private fb: FormBuilder,
     private store: Store,
   ) {
-    this.store.dispatch(AdminSettingsPageMenuActions.getParentMenuItems());
+    this.store.dispatch(MenuFormActions.getParentMenuItems());
 
     this.form.controls.parent.valueChanges
       .pipe(
@@ -62,7 +63,7 @@ export class AdminSettingsPageMenuDialogComponent implements OnDestroy {
   }
 
   public saved(): void {
-    this.store.dispatch(AdminSettingsPageMenuActions.saveParentMenu({
+    this.store.dispatch(MenuFormActions.saveParentMenu({
       id: this.form.value.parent?.id,
       subMenuItems: this.form.value.items
         ?.map((item, order) => item.menu

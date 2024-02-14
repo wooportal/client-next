@@ -16,17 +16,17 @@ import { IconComponent, IconFormComponent } from 'ngx-cinlib/icons';
 import { DragDropContainerComponent, DragDropElementComponent } from 'ngx-cinlib/layouts/drag-drop';
 import { GridColumnDirective, GridRowComponent } from 'ngx-cinlib/layouts/grid-layout';
 import { CoreModule } from 'src/app/core/core.module';
-import { AdminSettingsPageMenuComponent } from './components/admin-settings-page-menu.component';
-import { AdminSettingsPageMenuDialogComponent } from './components/dialog/admin-settings-page-menu-dialog.component';
-import { AdminSettingsPageMenuFormComponent } from './components/form/admin-settings-page-menu-form.component';
-import { adminSettingsPageMenuStateKey } from './constants/admin-settings-page-menu.constants';
-import { AdminSettingsPageMenuEffects } from './state/admin-settings-page-menu.effects';
-import { adminSettingsPageMenuReducer } from './state/admin-settings-page-menu.reducer';
+import { MenuFormDialogComponent } from './components/dialog/menu-form-dialog.component';
+import { MenuItemFormComponent } from './components/form/menu-item-form.component';
+import { MenuFormComponent } from './components/menu-form.component';
+import { menuFormStateKey } from './constants/menu-form.constants';
+import { MenuFormEffects } from './state/menu-form.effects';
+import { adminSettingsPageMenuReducer } from './state/menu-form.reducer';
 
 const components = [
-  AdminSettingsPageMenuComponent,
-  AdminSettingsPageMenuDialogComponent,
-  AdminSettingsPageMenuFormComponent,
+  MenuFormComponent,
+  MenuFormDialogComponent,
+  MenuItemFormComponent,
 ];
 
 const framework = [
@@ -50,9 +50,8 @@ const modules = [
 ];
 
 const libs = [
-  EffectsModule.forFeature([AdminSettingsPageMenuEffects]),
-  StoreModule.forFeature(adminSettingsPageMenuStateKey, adminSettingsPageMenuReducer),
-
+  EffectsModule.forFeature([MenuFormEffects]),
+  StoreModule.forFeature(menuFormStateKey, adminSettingsPageMenuReducer),
   DragDropContainerComponent,
   DragDropElementComponent,
   GridColumnDirective,
@@ -73,4 +72,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class AdminSettingsPageMenuModule { }
+export class MenuFormModule { }

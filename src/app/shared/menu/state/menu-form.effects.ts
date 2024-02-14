@@ -6,13 +6,13 @@ import { GetMenuItemsGQL } from 'src/app/admin/api/generated/get-menu-items.quer
 import { SaveMenuItemGQL } from 'src/app/admin/api/generated/save-menu-item.mutation.generated';
 import { MenuItemEntity, QueryOperator } from 'src/app/core/api/generated/schema';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { AdminSettingsPageMenuActions } from './admin-settings-page-menu.actions';
+import { MenuFormActions } from './menu-form.actions';
 
 @Injectable()
-export class AdminSettingsPageMenuEffects {
+export class MenuFormEffects {
 
   getMenuItems = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsPageMenuActions.getParentMenuItems),
+    ofType(MenuFormActions.getParentMenuItems),
     switchMap(() => this.getMenuItemsService.watch({
       params: {
         expression: {
@@ -24,11 +24,11 @@ export class AdminSettingsPageMenuEffects {
         }
       }
     }).valueChanges),
-    map(response => AdminSettingsPageMenuActions.parentMenuItemsRetrieved(response.data.getMenuItems?.result as MenuItemEntity[]))
+    map(response => MenuFormActions.parentMenuItemsRetrieved(response.data.getMenuItems?.result as MenuItemEntity[]))
   ));
 
   saveParentMenu = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsPageMenuActions.saveParentMenu),
+    ofType(MenuFormActions.saveParentMenu),
     switchMap(action => this.saveMenuItemService.mutate({
       entity: action.menuItem,
     })),

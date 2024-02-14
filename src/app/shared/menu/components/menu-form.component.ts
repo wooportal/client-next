@@ -3,26 +3,26 @@ import { ControlValueAccessor, FormArray, FormBuilder, NG_VALIDATORS, NG_VALUE_A
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
-import { AdminSettingsPageMenuDialogComponent } from './dialog/admin-settings-page-menu-dialog.component';
+import { MenuFormDialogComponent } from './dialog/menu-form-dialog.component';
 
 @Component({
-  selector: 'app-admin-settings-page-menu',
-  templateUrl: './admin-settings-page-menu.component.html',
-  styleUrls: ['./admin-settings-page-menu.component.scss'],
+  selector: 'app-menu-form',
+  templateUrl: './menu-form.component.html',
+  styleUrls: ['./menu-form.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: AdminSettingsPageMenuComponent
+      useExisting: MenuFormComponent
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: AdminSettingsPageMenuComponent
+      useExisting: MenuFormComponent
     },
   ],
 })
-export class AdminSettingsPageMenuComponent implements ControlValueAccessor, Validator, OnDestroy {
+export class MenuFormComponent implements ControlValueAccessor, Validator, OnDestroy {
 
   public form = this.fb.group({
     menuItems: this.fb.array([] as Maybe<MenuItemEntity>[])
@@ -66,7 +66,7 @@ export class AdminSettingsPageMenuComponent implements ControlValueAccessor, Val
   }
 
   public added(): void {
-    this.dialog.open(AdminSettingsPageMenuDialogComponent)
+    this.dialog.open(MenuFormDialogComponent)
       .afterClosed()
       .pipe(takeUntil(this.destroy))
       .subscribe((menuItem: MenuItemEntity) => {

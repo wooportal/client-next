@@ -15,8 +15,8 @@ import { I18nDirective } from 'ngx-cinlib/i18n';
 import { GridColumnDirective, GridRowComponent } from 'ngx-cinlib/layouts/grid-layout';
 import { PageTitleComponent } from 'ngx-cinlib/layouts/title';
 import { CoreModule } from 'src/app/core/core.module';
+import { MenuFormModule } from 'src/app/shared/menu/menu-form.module';
 import { AdminSettingsPageEmbeddingModule } from '../embedding/admin-settings-page-embedding.module';
-import { AdminSettingsPageMenuModule } from '../menu/admin-settings-page-menu.module';
 import { AdminSettingsPageFormRoutingModule } from './admin-settings-page-form.module-routing.module';
 import { AdminSettingsPageFormComponent } from './component/admin-settings-page-form.component';
 import { adminSettingsPageFormStateKey } from './constants/admin-settings-page-form.constants';
@@ -43,8 +43,8 @@ const materials = [
 const modules = [
   AdminSettingsPageEmbeddingModule,
   AdminSettingsPageFormRoutingModule,
-  AdminSettingsPageMenuModule,
   CoreModule,
+  MenuFormModule
 ];
 
 const libs = [

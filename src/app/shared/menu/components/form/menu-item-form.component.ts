@@ -7,23 +7,23 @@ import { Subject, takeUntil } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 
 @Component({
-  selector: 'app-admin-settings-page-menu-form',
-  templateUrl: './admin-settings-page-menu-form.component.html',
-  styleUrls: ['./admin-settings-page-menu-form.component.scss'],
+  selector: 'app-menu-item-form',
+  templateUrl: './menu-item-form.component.html',
+  styleUrls: ['./menu-item-form.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => AdminSettingsPageMenuFormComponent),
+      useExisting: forwardRef(() => MenuItemFormComponent),
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: AdminSettingsPageMenuFormComponent
+      useExisting: MenuItemFormComponent
     },
   ]
 })
-export class AdminSettingsPageMenuFormComponent implements ControlValueAccessor, Validator, OnDestroy {
+export class MenuItemFormComponent implements ControlValueAccessor, Validator, OnDestroy {
 
   @Output()
   public deleted = new EventEmitter<void>();

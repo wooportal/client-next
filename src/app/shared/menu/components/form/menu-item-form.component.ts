@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALIDATORS, NG_VALUE_ACCESSOR, Va
 import { TranslationService } from 'ngx-cinlib/i18n';
 import { SolidIconsType } from 'ngx-cinlib/icons';
 import { ConfirmService, ConfirmType } from 'ngx-cinlib/modals/confirm';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 
 @Component({
@@ -24,7 +24,7 @@ import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
   ]
 })
 export class MenuItemFormComponent implements ControlValueAccessor, Validator, OnDestroy {
-
+  
   @Output()
   public deleted = new EventEmitter<void>();
 
@@ -49,22 +49,23 @@ export class MenuItemFormComponent implements ControlValueAccessor, Validator, O
     private translationService: TranslationService,
   ) {
     this.form.valueChanges
-      .pipe(
-        takeUntil(this.destroy)
-      ).subscribe(value => {
-        this.onTouch?.();
-        this.onChange?.({
-          id: value.id,
-          icon: value.icon,
-          name: value.name,
-          shortDescription: value.shortDescription,
-          order: value.order,
-          parent: {
-            id: value.parent?.id
-          }
-        });
-        this.onValidate?.();
-      })
+    .pipe(
+      takeUntil(this.destroy)
+    ).subscribe(value => {
+      this.onTouch?.();
+      this.onChange?.({
+        id: value.id,
+        icon: value.icon,
+        name: value.name,
+        shortDescription: value.shortDescription,
+        order: value.order,
+        parent: {
+          id: value.parent?.id
+        },
+      });
+      this.onValidate?.();
+    });
+  
   }
 
   public onDelete(): void {
@@ -81,28 +82,22 @@ export class MenuItemFormComponent implements ControlValueAccessor, Validator, O
   }   
 
   public writeValue(menuItem: Maybe<MenuItemEntity>): void {
+
     if (menuItem) {
-      this.form.patchValue({
-        id: menuItem.id,
-        icon: menuItem.icon as Maybe<SolidIconsType>,
-        order: menuItem.order,
-        parent: menuItem.parent
-      });
-  
-      this.translationService.translatable(menuItem, 'name')
-        .pipe(takeUntil(this.destroy))
-        .subscribe(name => this.form.patchValue({
-          id: menuItem.id,
-          name
-        }));
-  
-      this.translationService.translatable(menuItem, 'shortDescription')
-        .pipe(takeUntil(this.destroy))
-        .subscribe(shortDescription => this.form.patchValue({
-          id: menuItem.id,
-          shortDescription
-        }));
-    }
+      combineLatest([
+        this.translationService.translatable(menuItem, 'name'),
+        this.translationService.translatable(menuItem, 'shortDescription')
+      ])
+      .pipe(takeUntil(this.destroy))
+      .subscribe(([name, shortDescription]) => {this.form.setValue({
+          id: menuItem.id ?? '',
+          icon: menuItem.icon as Maybe<SolidIconsType>,
+          order: menuItem.order,
+          parent: menuItem.parent,
+          name,
+          shortDescription});
+          });
+      }
   }
 
   public registerOnChange(onChange: (menuItem: Maybe<MenuItemEntity>) => void): void {

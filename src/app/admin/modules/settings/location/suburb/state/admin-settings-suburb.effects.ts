@@ -9,10 +9,11 @@ import { DeleteSuburbGQL } from 'src/app/admin/api/generated/delete-suburb.mutat
 import { GetSuburbGQL } from 'src/app/admin/api/generated/get-suburb.query.generated';
 import { GetSuburbsGQL } from 'src/app/admin/api/generated/get-suburbs.query.generated';
 import { SaveSuburbGQL } from 'src/app/admin/api/generated/save-suburb.mutation.generated';
+import { settingsUrl } from 'src/app/admin/constants/admin.constants';
 import { PageableList_SuburbEntity } from 'src/app/core/api/generated/schema';
-import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
+import { adminUrl, } from 'src/app/core/constants/module.constants';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { baseRoute } from '../../admin-settings-location.routing.module';
+import { locationRoute } from '../../admin-settings-location.routing.module';
 import { AdminSettingsSuburbActions } from './admin-settings-suburb.actions';
 import { selectParams } from './admin-settings-suburb.selectors';
 
@@ -42,7 +43,7 @@ export class AdminSettingsSuburbEffects {
 
   cancelled = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsSuburbActions.cancelled),
-    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'suburbs'])),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, locationRoute, 'suburbs'])),
   ), { dispatch: false });
   
 
@@ -56,7 +57,7 @@ export class AdminSettingsSuburbEffects {
 
   saved = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsSuburbActions.saved),
-    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'suburbs'])),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, locationRoute, 'suburbs'])),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'savedSuccessfully'

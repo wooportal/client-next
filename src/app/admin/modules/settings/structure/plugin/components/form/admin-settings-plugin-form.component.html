@@ -1,0 +1,10 @@
+<cin-page-title 
+  [titleLabel]="'addPluginToMenu'">
+</cin-page-title>
+
+<cin-form-stepper (cancelled)="cancelled()" (saved)="saved()">
+  <cin-form-step titleLabel="menu" [formGroup]="menuForm">
+    <app-menu-form formControlName="menuItems" [defaultMenuItem]="defaultMenuItem">
+    </app-menu-form>
+  </cin-form-step>
+</cin-form-stepper>

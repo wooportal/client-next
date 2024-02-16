@@ -12,7 +12,7 @@ import { GetRolesGQL } from 'src/app/admin/api/generated/get-roles.query.generat
 import { PageableList_PrivilegeApplicationEntity, QueryOperator, RoleEntity } from 'src/app/core/api/generated/schema';
 import { adminUrl } from 'src/app/core/constants/module.constants';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { accessBaseRoute } from '../../admin-settings-access-routing.module';
+import { accessRoute } from '../../admin-settings-access-routing.module';
 import { AdminSettingsPrivilegeApplicationActions } from './admin-settings-privilege-application.actions';
 import { selectParams } from './admin-settings-privilege-application.selectors';
 
@@ -100,7 +100,7 @@ export class AdminSettingsPrivilegeApplicationEffects {
 
   roleAssigned = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsPrivilegeApplicationActions.roleAssigned),
-    tap(() => this.router.navigate([adminUrl, accessBaseRoute, 'privilege-applications'])),
+    tap(() => this.router.navigate([adminUrl, accessRoute, 'privilege-applications'])),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'savedSuccessfully'

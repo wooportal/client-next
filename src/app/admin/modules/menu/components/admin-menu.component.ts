@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'ngx-cinlib/security';
 import { map } from 'rxjs';
+import { settingsUrl } from 'src/app/admin/constants/admin.constants';
 import { selectAdminMainMenu, selectAdminSettingsMenu } from 'src/app/admin/state/admin.selectors';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
-import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
+import { adminUrl, } from 'src/app/core/constants/module.constants';
 import { Privilege } from 'src/app/core/typings/privilege';
 
 @Component({

@@ -5,11 +5,11 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
 import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-export const baseRoute = 'location';
+export const locationRoute = 'location';
 
 const routes: AdminSettingsRoute[] = [
   {
-    path: `${baseRoute}/addresses`,
+    path: `${locationRoute}/addresses`,
     loadChildren: () => import('src/app/admin/modules/settings/location/address/admin-settings-address.module')
       .then((imported) => imported.AdminSettingsAddressModule),
     data: {
@@ -21,7 +21,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('addresses_admin')]
   },
   {
-    path: `${baseRoute}/suburbs`,
+    path: `${locationRoute}/suburbs`,
     loadChildren: () => import('src/app/admin/modules/settings/location/suburb/admin-settings-suburb.module')
       .then((imported) => imported.AdminSettingsSuburbModule),
     data: {

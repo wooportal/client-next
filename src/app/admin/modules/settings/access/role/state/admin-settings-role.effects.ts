@@ -18,7 +18,7 @@ import {
 } from 'src/app/core/api/generated/schema';
 import { adminUrl } from 'src/app/core/constants/module.constants';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { accessBaseRoute } from '../../admin-settings-access-routing.module';
+import { accessRoute } from '../../admin-settings-access-routing.module';
 import { AdminSettingsRoleActions } from './admin-settings-role.actions';
 import { selectParams } from './admin-settings-role.selectors';
 
@@ -106,7 +106,7 @@ export class AdminSettingsRoleEffects {
   saved = createEffect(() =>
     this.actions.pipe(
       ofType(AdminSettingsRoleActions.saved),
-      tap(() => this.router.navigate([adminUrl, accessBaseRoute, 'role'])),
+      tap(() => this.router.navigate([adminUrl, accessRoute, 'role'])),
       map(() =>
         CoreActions.setFeedback({
           type: FeedbackType.Success,
@@ -120,7 +120,7 @@ export class AdminSettingsRoleEffects {
     () =>
       this.actions.pipe(
         ofType(AdminSettingsRoleActions.cancelled),
-        tap(() => this.router.navigate([adminUrl, accessBaseRoute, 'role']))
+        tap(() => this.router.navigate([adminUrl, accessRoute, 'role']))
       ),
     { dispatch: false }
   );

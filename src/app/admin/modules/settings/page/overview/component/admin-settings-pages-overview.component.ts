@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'ngx-cinlib/i18n';
 import { Column, RowAction } from 'ngx-cinlib/tables';
+import { settingsUrl } from 'src/app/admin/constants/admin.constants';
 import { FilterSortPaginateInput, Maybe, PageEntity } from 'src/app/core/api/generated/schema';
+import { adminUrl } from 'src/app/core/constants/module.constants';
 import { AdminSettingsPageActions } from '../state/admin-settings-pages.actions';
 import { selectPages } from '../state/admin-settings-pages.selectors';
 
@@ -21,7 +23,7 @@ export class AdminSettingsPagesOverviewComponent {
     {
       icon: 'pen-to-square',
       callback: row =>
-        this.router.navigate(['admin/settings/pages', row?.slug, 'form']),
+        this.router.navigate([ adminUrl, settingsUrl, 'pages', row?.slug, 'form']),
       tooltipLabel: 'edit'
     },
     {

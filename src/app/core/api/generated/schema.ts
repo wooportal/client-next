@@ -17,19 +17,19 @@ export type Scalars = {
   OffsetDateTime: { input: any; output: any; }
 };
 
-  export type AddressEntity = {
-    __typename?: 'AddressEntity';
-    created?: Maybe<Scalars['OffsetDateTime']['output']>;
-    houseNumber?: Maybe<Scalars['String']['output']>;
-    id?: Maybe<Scalars['String']['output']>;
-    latitude?: Maybe<Scalars['Float']['output']>;
-    longitude?: Maybe<Scalars['Float']['output']>;
-    modified?: Maybe<Scalars['OffsetDateTime']['output']>;
-    place?: Maybe<Scalars['String']['output']>;
-    postalCode?: Maybe<Scalars['String']['output']>;
-    street?: Maybe<Scalars['String']['output']>;
-    suburb?: Maybe<SuburbEntity>;
-  };
+export type AddressEntity = {
+  __typename?: 'AddressEntity';
+  created?: Maybe<Scalars['OffsetDateTime']['output']>;
+  houseNumber?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  latitude?: Maybe<Scalars['Float']['output']>;
+  longitude?: Maybe<Scalars['Float']['output']>;
+  modified?: Maybe<Scalars['OffsetDateTime']['output']>;
+  place?: Maybe<Scalars['String']['output']>;
+  postalCode?: Maybe<Scalars['String']['output']>;
+  street?: Maybe<Scalars['String']['output']>;
+  suburb?: Maybe<SuburbEntity>;
+};
 
 export type AddressEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']['input']>;
@@ -623,6 +623,7 @@ export type ContestParticipationEntity = {
   textSubmission?: Maybe<Scalars['String']['output']>;
   translatables?: Maybe<Array<Maybe<ContestParticipationTranslatableEntity>>>;
   userContext?: Maybe<UserContextEntity>;
+  voteAmount?: Maybe<Scalars['Int']['output']>;
 };
 
 export type ContestParticipationEntityInput = {
@@ -637,6 +638,7 @@ export type ContestParticipationEntityInput = {
   textSubmission?: InputMaybe<Scalars['String']['input']>;
   translatables?: InputMaybe<Array<InputMaybe<ContestParticipationTranslatableEntityInput>>>;
   userContext?: InputMaybe<UserContextEntityInput>;
+  voteAmount?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type ContestParticipationMediaEntity = {
@@ -1729,7 +1731,7 @@ export type Mutation = {
   addFavoriteDeal?: Maybe<UserContextEntity>;
   addFavoriteEvent?: Maybe<UserContextEntity>;
   addFavoriteOrganisation?: Maybe<UserContextEntity>;
-  addRole?: Maybe<Scalars['Boolean']['output']>;
+  addUser?: Maybe<Scalars['Boolean']['output']>;
   assignLandingPage?: Maybe<Scalars['Boolean']['output']>;
   changeArticleApproval?: Maybe<Scalars['Boolean']['output']>;
   changeOrganisationApproval?: Maybe<Scalars['Boolean']['output']>;
@@ -2078,7 +2080,7 @@ export type MutationAddFavoriteOrganisationArgs = {
 
 
 /** Mutation root */
-export type MutationAddRoleArgs = {
+export type MutationAddUserArgs = {
   roleId?: InputMaybe<Scalars['String']['input']>;
   userId?: InputMaybe<Scalars['String']['input']>;
 };
@@ -4905,6 +4907,7 @@ export type PluginEntity = {
   modified?: Maybe<Scalars['OffsetDateTime']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   released?: Maybe<Scalars['Boolean']['output']>;
+  shortDescription?: Maybe<Scalars['String']['output']>;
   translatables?: Maybe<Array<Maybe<PluginTranslatableEntity>>>;
 };
 
@@ -4918,6 +4921,7 @@ export type PluginEntityInput = {
   modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   released?: InputMaybe<Scalars['Boolean']['input']>;
+  shortDescription?: InputMaybe<Scalars['String']['input']>;
   translatables?: InputMaybe<Array<InputMaybe<PluginTranslatableEntityInput>>>;
 };
 
@@ -4928,6 +4932,7 @@ export type PluginTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  shortDescription?: Maybe<Scalars['String']['output']>;
 };
 
 export type PluginTranslatableEntityInput = {
@@ -4935,6 +4940,7 @@ export type PluginTranslatableEntityInput = {
   id?: InputMaybe<Scalars['String']['input']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  shortDescription?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PrivilegeApplicationEntity = {
@@ -5006,7 +5012,7 @@ export type Query = {
   getConfigurations?: Maybe<PageableList_ConfigurationEntity>;
   getContact?: Maybe<ContactEntity>;
   getContacts?: Maybe<PageableList_ContactEntity>;
-  getContesParticipationt?: Maybe<ContestParticipationEntity>;
+  getContesParticipation?: Maybe<ContestParticipationEntity>;
   getContest?: Maybe<ContestEntity>;
   getContestComment?: Maybe<ContestCommentEntity>;
   getContestComments?: Maybe<PageableList_ContestCommentEntity>;
@@ -5278,7 +5284,7 @@ export type QueryGetContactsArgs = {
 
 
 /** Query root */
-export type QueryGetContesParticipationtArgs = {
+export type QueryGetContesParticipationArgs = {
   entity?: InputMaybe<ContestParticipationEntityInput>;
 };
 

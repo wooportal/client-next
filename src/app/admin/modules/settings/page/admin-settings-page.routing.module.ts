@@ -7,11 +7,11 @@ import { slug } from 'src/app/core/constants/queryparam.constants';
 import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 import { AdminSettingsPageDetailsLayoutComponent } from './details/modules/layout/components/admin-settings-page-details-layout.component';
 
-const baseRoute = 'pages';
+export const pageRoute = 'pages';
 
 const menuRoutes: AdminSettingsRoute[] = [
   {
-    path: `${baseRoute}/overview`,
+    path: `${pageRoute}/overview`,
     loadChildren: () => import('src/app/admin/modules/settings/page/overview/admin-settings-pages.module')
       .then((imported) => imported.AdminSettingsPagesModule),
     data: {
@@ -26,19 +26,19 @@ const menuRoutes: AdminSettingsRoute[] = [
 
 const routes: Routes = [
   {
-    path: `${baseRoute}/overview/form`,
+    path: `${pageRoute}/overview/form`,
     loadChildren: () => import('./form/admin-settings-page-form.module')
       .then((imported) => imported.AdminSettingsPageFormModule),
     canActivate: [requireAnyPrivilege('cms_admin')]
   },
   {
-    path: `${baseRoute}/:${slug}/form`,
+    path: `${pageRoute}/:${slug}/form`,
     loadChildren: () => import('./form/admin-settings-page-form.module')
       .then((imported) => imported.AdminSettingsPageFormModule),
     canActivate: [requireAnyPrivilege('cms_admin')]
   },
   {
-    path: `${baseRoute}/:${slug}`,
+    path: `${pageRoute}/:${slug}`,
     loadChildren: () => import('./details/admin-settings-page-details.module')
       .then((imported) => imported.AdminSettingsPageDetailsModule),
     component: AdminSettingsPageDetailsLayoutComponent,

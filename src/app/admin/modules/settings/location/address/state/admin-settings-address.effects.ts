@@ -9,10 +9,11 @@ import { DeleteAddressGQL } from 'src/app/admin/api/generated/delete-address.mut
 import { GetAddressGQL } from 'src/app/admin/api/generated/get-address.query.generated';
 import { GetAddressesGQL } from 'src/app/admin/api/generated/get-addresses.query.generated';
 import { SaveAddressGQL } from 'src/app/admin/api/generated/save-address.mutation.generated';
+import { settingsUrl } from 'src/app/admin/constants/admin.constants';
 import { PageableList_AddressEntity } from 'src/app/core/api/generated/schema';
-import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
+import { adminUrl, } from 'src/app/core/constants/module.constants';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { baseRoute } from '../../admin-settings-location.routing.module';
+import { locationRoute } from '../../admin-settings-location.routing.module';
 import { AdminSettingsAddressActions } from './admin-settings-address.actions';
 import { selectParams } from './admin-settings-address.selectors';
 
@@ -41,7 +42,7 @@ export class AdminSettingsAddressEffects {
 
   cancelled = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsAddressActions.cancelled),
-    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'addresses'])),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, locationRoute, 'addresses'])),
   ), { dispatch: false });
 
   save = createEffect(() => this.actions.pipe(
@@ -54,7 +55,7 @@ export class AdminSettingsAddressEffects {
 
   saved = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsAddressActions.saved),
-    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'addresses'])),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, locationRoute, 'addresses'])),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'savedSuccessfully'

@@ -1,0 +1,5 @@
+mutation savePlugin($entity: PluginEntityInput!) {
+  savePlugin(entity: $entity) {
+    id
+  }
+}

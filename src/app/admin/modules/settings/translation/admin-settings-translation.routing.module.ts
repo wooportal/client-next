@@ -5,11 +5,11 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
 import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-const baseRoute = 'translation';
+export const translationRoute = 'translation';
 
 const routes: AdminSettingsRoute[] = [
   {
-    path: `${baseRoute}/languages`,
+    path: `${translationRoute}/languages`,
     loadChildren: () => import('./language/admin-settings-language.module')
       .then((imported) => imported.AdminSettingsLanguageModule),
     data: {
@@ -21,7 +21,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('translator_admin')]
   },
   {
-    path: `${baseRoute}/labels`,
+    path: `${translationRoute}/labels`,
     loadChildren: () => import('./label/admin-settings-label.module')
       .then((imported) => imported.AdminSettingsLabelModule),
     data: {

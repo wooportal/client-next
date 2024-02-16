@@ -10,6 +10,7 @@ query getPlugins($params: FilterSortPaginateInput) {
       translatables {
         id
         name
+        shortDescription
         language {
           ...Language
         }

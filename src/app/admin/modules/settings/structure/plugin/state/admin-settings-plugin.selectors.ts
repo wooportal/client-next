@@ -13,3 +13,8 @@ export const selectParams = createSelector(
   selectAdminSettingsPluginState,
   state => state.params
 );
+
+export const selectPlugin = createSelector(
+  selectAdminSettingsPluginState,
+  state => state.plugin
+);

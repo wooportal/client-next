@@ -1,0 +1,44 @@
+query getPlugin($entity: PluginEntityInput) {
+  getPlugin(entity: $entity) {
+    id
+    name
+    shortDescription
+    icon
+    active
+    code
+    translatables {
+      id
+      name
+      shortDescription
+      language {
+        ...Language
+      }
+    }
+    menuItems {
+      id
+      order
+      icon
+      
+      translatables {
+        id
+        name
+        shortDescription
+        language {
+          ...Language
+        }
+      }
+
+      parent {
+        id
+        
+        translatables {
+          id 
+          name
+          language {
+            ...Language
+          }
+        }
+      }
+    }
+  }
+}

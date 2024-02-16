@@ -9,9 +9,10 @@ import { IconComponent } from 'ngx-cinlib/icons';
 import { DetailsTitleComponent, PageTitleComponent } from 'ngx-cinlib/layouts/title';
 import { AuthService } from 'ngx-cinlib/security';
 import { map } from 'rxjs';
+import { settingsUrl } from 'src/app/admin/constants/admin.constants';
 import { selectAdminSettingsMenu } from 'src/app/admin/state/admin.selectors';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
-import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
+import { adminUrl, } from 'src/app/core/constants/module.constants';
 import { CoreModule } from 'src/app/core/core.module';
 import { Privilege } from 'src/app/core/typings/privilege';
 

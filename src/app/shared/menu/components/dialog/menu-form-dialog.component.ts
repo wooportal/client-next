@@ -7,8 +7,7 @@ import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { MenuFormActions } from '../../state/menu-form.actions';
 import { selectParentMenuItems } from '../../state/menu-form.selectors';
 
-
-type PageMenuFormInput = {
+type MenuFormInput = {
   menu?: Maybe<MenuItemEntity>,
   newEntity?: boolean
 };
@@ -20,11 +19,12 @@ type PageMenuFormInput = {
 })
 export class MenuFormDialogComponent implements OnDestroy {
 
+
   public parentMenuItems = this.store.select(selectParentMenuItems);
 
   public form = this.fb.group({
     parent: [undefined as Maybe<MenuItemEntity>],
-    items: [[] as PageMenuFormInput[]],
+    items: [[] as MenuFormInput[]],
   });
 
   private destroy = new Subject<void>();
@@ -44,7 +44,7 @@ export class MenuFormDialogComponent implements OnDestroy {
         takeUntil(this.destroy)
       ).subscribe(items => this.form.patchValue({
           items: [
-            ...[{ newEntity: true,}],
+            ...[{ newEntity: true }],
             ...items?.map(menu => ({
               menu,
               newEntity: false,

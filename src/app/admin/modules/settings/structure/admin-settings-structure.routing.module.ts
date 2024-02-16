@@ -5,11 +5,11 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
 import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-const baseRoute = 'structure';
+export const structureRoute = 'structure';
 
 const routes: AdminSettingsRoute[] = [
   {
-    path: `${baseRoute}/menu`,
+    path: `${structureRoute}/menu`,
     loadComponent: () => import('./menu/admin-settings-menu.component')
       .then((imported) => imported.AdminSettingsMenuComponent),
     data: {
@@ -22,7 +22,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
-    path: `${baseRoute}/theme`,
+    path: `${structureRoute}/theme`,
     loadComponent: () => import('./theme/admin-settings-theme.component')
       .then((imported) => imported.AdminSettingsThemeComponent),
     data: {
@@ -35,7 +35,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
-    path: `${baseRoute}/plugins`,
+    path: `${structureRoute}/plugins`,
     loadChildren: () => import('./plugin/admin-settings-plugin.module')
       .then((imported) => imported.AdminSettingsPluginModule),
     data: {
@@ -47,7 +47,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
-    path: `${baseRoute}/configuration`,
+    path: `${structureRoute}/configuration`,
     loadChildren: () => import('./configuration/admin-settings-configuration.module')
       .then((imported) => imported.AdminSettingsConfigurationModule),
     data: {

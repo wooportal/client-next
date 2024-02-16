@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, FormArray, FormBuilder, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
@@ -24,6 +24,9 @@ import { MenuFormDialogComponent } from './dialog/menu-form-dialog.component';
 })
 export class MenuFormComponent implements ControlValueAccessor, Validator, OnDestroy {
 
+  @Input()
+  public defaultMenuItem?: Maybe<MenuItemEntity>;
+  
   public form = this.fb.group({
     menuItems: this.fb.array([] as Maybe<MenuItemEntity>[])
   });
@@ -71,10 +74,13 @@ export class MenuFormComponent implements ControlValueAccessor, Validator, OnDes
       .pipe(takeUntil(this.destroy))
       .subscribe((menuItem: MenuItemEntity) => {
         if (menuItem) {
-          this.menuItems.push(this.fb.control(menuItem));
+          this.menuItems.push(this.fb.control({
+            ...menuItem,
+            ...this.defaultMenuItem
+          }));
           this.cdr.detectChanges();
         }
-      });
+      }); 
   }
 
   public onDelete(index: number): void {

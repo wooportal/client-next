@@ -30,7 +30,6 @@ export class AdminSettingsPageFormEffects {
     tap(() => this.router.navigate([`/admin/settings/pages/overview`])),
   ), { dispatch: false });
 
-
   save = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsPageFormActions.save),
     switchMap(action => this.savePageService.mutate({
